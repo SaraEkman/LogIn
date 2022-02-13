@@ -8,7 +8,7 @@ const main = document.querySelector("main");
 
 
 // Function för utloggad hemsidan ska se ut
-function loggadInPage() {
+function logInPage() {
     // Skappa input för använda namnet
     const nameInput = document.createElement("input");
     nameInput.placeholder = "Användare namn";
@@ -57,7 +57,7 @@ function loggadInPage() {
     });
 }
 // Function för hur logad ut hemsida skulle kunna se ut
-function loggadOutPage() {
+function logOutPage() {
     // Göra button med logga ut
     const logOutBtn = document.createElement("button");
     logOutBtn.textContent = "Logga ut";
@@ -83,10 +83,10 @@ function loggadOutPage() {
 
 // Om det inte finns key med namn AnvädareNamn i LocalStorage "Som är lika med null" Så om det inte finns nåt med denna key och hämta så är localstorge lika med null Så köra vi function loggadInPage 
 if (localStorage.getItem('AnvändareNamn') === null) {
-    loggadInPage();
+    logInPage();
 }
 
 // Om det finns nåt i localStorge så kör denna Function som håller oss inloggade
 else {
-    loggadOutPage();
+    logOutPage();
 }

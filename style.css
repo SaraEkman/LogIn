@@ -1,13 +1,13 @@
 body{
   font-family: 'Fredericka the Great', cursive;
-  background-color: rgb(25 22 28);
+  background-color: rgba(14, 13, 15, 0.884);
 }
 .wrapper{
     width: 85vw;
     margin: auto;
 }
 header {
-  background-color: rgb(52, 52, 116);
+  background-color: rgba(81, 91, 153, 0.445);
   height: 25vh;
   display: flex;
   justify-content: center;
@@ -51,7 +51,7 @@ header h1 {
 }
 
 main {
-  background-color: rgb(231, 155, 193);
+  background-color: rgba(224, 158, 191, 0.925);
   height: 60vh;
   border-radius: 20px;
 }
@@ -64,7 +64,7 @@ main h2 {
 }
 
 footer {
-  background-color: rgb(98, 105, 144);
+  background-color: rgba(81, 91, 153, 0.445);
   height: 10vh;
   text-align: center;
   border-radius: 20px;
@@ -74,6 +74,7 @@ footer h3 {
   margin: 0em;
   padding: 1rem;
   font-size: 1.5rem;
+  color: whitesmoke;
 }
 
 
