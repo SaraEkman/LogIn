@@ -8,7 +8,7 @@ body{
 }
 header {
   background-color: rgba(81, 91, 153, 0.445);
-  height: 25vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +52,7 @@ header h1 {
 
 main {
   background-color: rgba(224, 158, 191, 0.925);
-  height: 60vh;
+  height: 55vh;
   border-radius: 20px;
 }
 
@@ -78,7 +78,7 @@ footer h3 {
 }
 
 
-@media only screen and (min-width: 750px) { 
+@media only screen and (min-width: 850px) { 
   
   header {
     height: 15vh;
