@@ -47,12 +47,12 @@ header h1 {
  font-weight: bolder;
  width: 70%;
  border-radius: 20px;
+ background-image: linear-gradient(to right bottom, #d1bdeb, rgb(61, 80, 202), #c7a7ef);
+ color: aliceblue;
 }
 
 .hover:hover{
-  font-size: 1.3rem;
-  background-color: rgba(0, 0, 0, 0.705);
-  color: whitesmoke;
+  background-image: linear-gradient(to right bottom, #d1bdeb, rgb(9, 25, 129), #c7a7ef);
   transition: all 0.25s ease-in-out;
 }
 
