@@ -10,11 +10,11 @@ const main = document.querySelector("main");
 function logInPage() {
     const nameInput = document.createElement("input");
     nameInput.placeholder = "Användare namn";
-    nameInput.className = "padding NewN";
+    nameInput.className = "padding";
 
     const passWordInput = document.createElement("input");
     passWordInput.placeholder = "Lösenord";
-    passWordInput.className = "padding NewP";
+    passWordInput.className = "padding";
 
     const loginBtn = document.createElement("button");
     loginBtn.textContent = "Logga in";

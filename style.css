@@ -58,6 +58,7 @@ main {
 
 main h2 {
   margin: 0;
+  padding: 15px;
   text-align: center;
   padding-top: 15%;
   font-size: 2.5rem;
