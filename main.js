@@ -54,6 +54,7 @@ function logInPage() {
                 mainText.textContent = "OBS! Har du glömd lösenordet?";
             } else {
                 localStorage.setItem('usersId', JSON.stringify(data.userId));
+                localStorage.setItem('userName', JSON.stringify(data.userName));
                 location.reload();
             }
         }
@@ -94,6 +95,7 @@ function logInPage() {
 }
 // Function för hur logad ut hemsida skulle kunna se ut
 function logOutPage() {
+    let userName = JSON.parse(localStorage.getItem('userName'));
     const logOutBtn = document.createElement("button");
     logOutBtn.textContent = "Logga ut";
     logOutBtn.className = "padding hover";
@@ -101,7 +103,7 @@ function logOutPage() {
     header.appendChild(logOutBtn);
 
     const mainText = document.createElement("h2");
-    mainText.textContent = `Välkommen till min sida 😎`;
+    mainText.textContent = `Välkommen ${userName} till min sida 😎`;
 
     main.appendChild(mainText);
 
