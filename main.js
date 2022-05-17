@@ -1,10 +1,5 @@
-// Deklarera globala variablerna för rätta användare namnet och lösenordet
-
-const userArr = [{UName: "janne",PWord:"test"}]
-
 const header = document.querySelector("header");
 const main = document.querySelector("main");
-
 
 // Function för utloggad hemsidan ska se ut
 function logInPage() {
@@ -31,35 +26,70 @@ function logInPage() {
 
     main.appendChild(mainText);
 
-    loginBtn.addEventListener("click", () => {
+    loginBtn.addEventListener("click", async () => {
         const nameInputValue = nameInput.value;
         const passWordInputValue = passWordInput.value;
-
-        for (let el of userArr) {
-            if (el.UName === nameInputValue && el.PWord === passWordInputValue) {
-                localStorage.setItem("UserN", JSON.stringify(el.UName) );
-                localStorage.setItem("PWord", JSON.stringify(el.PWord) );
-                location.reload();
-            } else {
-                mainText.textContent = `Försök igen med rätt uppgifter eller registrera dig 🧐`;
-            } 
-        }
-       
-    });
-    newUser.addEventListener("click", () => {
-        const nameInputValue = nameInput.value;
-        const passWordInputValue = passWordInput.value;
-        console.log("hl");
-        if (nameInputValue == "" && passWordInputValue == "" ||
-            nameInputValue != "" && passWordInputValue == "" || 
+        if (nameInputValue == "" && passWordInputValue == "") {
+            mainText.textContent = `Fyll in den nya användarens namn och lösenordet sen logga in😊`;
+            return;
+        } else if (nameInputValue != "" && passWordInputValue == "" ||
             nameInputValue == "" && passWordInputValue != "") {
-            mainText.textContent = "Fyll in den nya användarens namn och lösenordet sen trycker du Ny Användare 😊";
+            mainText.textContent = "OBS! Något saknas, försök igen";
+            return;
         } else {
-            userArr.push({ UName: nameInputValue, PWord:passWordInputValue })
-            mainText.textContent = "Nu kan du logga in med dem nya uppgifterna 👍";
-            console.log(userArr);
+            let User = {
+                userName: nameInputValue,
+                passWord: passWordInputValue
+            };
+
+            let respons = await fetch("http://localhost:3001/logIn", {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(User)
+            });
+            let data = await respons.json();
+            console.log("logIn ", data);
+
+            if (data.mes === 'error') {
+                mainText.textContent = "OBS! Har du glömd lösenordet?";
+            } else {
+                localStorage.setItem('usersId', JSON.stringify(data.userId));
+                location.reload();
+            }
         }
-  
+
+    });
+    newUser.addEventListener("click", async () => {
+        const nameInputValue = nameInput.value;
+        const passWordInputValue = passWordInput.value;
+        if (nameInputValue == "" && passWordInputValue == "") {
+            mainText.textContent = `Fyll in den nya användarens namn och lösenordet sen trycker du Ny Användare 😊`;
+            return;
+        } else if (nameInputValue != "" && passWordInputValue == "" ||
+            nameInputValue == "" && passWordInputValue != "") {
+            mainText.textContent = "OBS! Något saknas, försök igen";
+            return;
+        }
+        else {
+            let User = {
+                userName: nameInputValue,
+                passWord: passWordInputValue
+            };
+
+            let respons = await fetch("http://localhost:3001/createUser", {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(User)
+            });
+            let data = await respons.json();
+            console.log("logIn ", data);
+
+            if (data.mes === 'error you have') {
+                mainText.textContent = `Du har redan inloggnings uppgifter Logga bara in Tack 😎`;
+            } else {
+                mainText.textContent = "Nu kan du logga in med dem nya uppgifterna 👍";
+            }
+        }
     });
 }
 // Function för hur logad ut hemsida skulle kunna se ut
@@ -70,9 +100,8 @@ function logOutPage() {
 
     header.appendChild(logOutBtn);
 
-    // Göra h2 i main 
     const mainText = document.createElement("h2");
-    mainText.textContent = `Välkommen ${JSON.parse(localStorage.getItem('UserN'))} till min sida 😎`;
+    mainText.textContent = `Välkommen till min sida 😎`;
 
     main.appendChild(mainText);
 
@@ -82,8 +111,9 @@ function logOutPage() {
     });
 }
 
-// Om det inte finns key med namn AnvädareNamn i LocalStorage "Som är lika med null" Så om det inte finns nåt med denna key och hämta så är localstorge lika med null Så köra vi function loggadInPage 
-if (JSON.parse(localStorage.getItem('UserN'))  === null || JSON.parse(localStorage.getItem("PWord") ) === null) {
+
+// Om det inte finns key med namn AnvädareNamn i LocalStorage "Som är lika med null" Så om det inte finns nåt med denna key och hämta så är localstorge lika med null Så köra vi function loggadInPage
+if (JSON.parse(localStorage.getItem('usersId')) === null) {
     logInPage();
 }
 
