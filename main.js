@@ -42,7 +42,7 @@ function logInPage() {
                 passWord: passWordInputValue
             };
 
-            let respons = await fetch("http://localhost:3001/logIn", {
+            let respons = await fetch("https://myloginbackend.herokuapp.com/logIn", {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(User)
@@ -77,7 +77,7 @@ function logInPage() {
                 passWord: passWordInputValue
             };
 
-            let respons = await fetch("http://localhost:3001/createUser", {
+            let respons = await fetch("https://myloginbackend.herokuapp.com/createUser", {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(User)
